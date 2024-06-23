@@ -33,23 +33,48 @@ bool lemonadeChange(int* bills, int billsSize) {
 
 //Versão Mais Clean
 
-bool lemonadeChange(int* bills, int billsSize) {
+#include <stdio.h>
+#include <stdbool.h>
+bool lemonadeChange( int *bills, int billsSize );
+
+int main()
+{
+    int bills[] = {5, 5, 5, 10, 20, 5, 5, 5, 5};
+    int billsSize = sizeof(bills) / sizeof(bills[0]);
+
+    lemonadeChange(bills, billsSize);
+}
+
+bool lemonadeChange(int *bills, int billsSize)
+{
     int troco5 = 0;
     int troco10 = 0;
-    for (int i = 0; i < billsSize; i++) {
-        if (bills[i] == 5) {
+    for (int i = 0; i < billsSize; i++)
+    {
+        if (bills[i] == 5)
+        {
             troco5++;
-        } else if (bills[i] == 10 && troco5 >= 1) {
+        }
+        else if (bills[i] == 10 && troco5 >= 1)
+        {
             troco5--;
             troco10++;
-        } else if (bills[i] == 20 && troco5 >= 1 && troco10 >= 1) {
+        }
+        else if (bills[i] == 20 && troco5 >= 1 && troco10 >= 1)
+        {
             troco5 -= 1;
             troco10 -= 1;
-        } else if (bills[i] == 20 && troco5 >= 3 && troco10 == 0) {
+        }
+        else if (bills[i] == 20 && troco5 >= 3 && troco10 == 0)
+        {
             troco5 -= 3;
-        } else {
+        }
+        else
+        {
+            printf("Falso\n");
             return false;
         }
     }
+    printf("Verdadeiro\n");
     return true;
 }
