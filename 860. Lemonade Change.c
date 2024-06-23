@@ -63,8 +63,8 @@ bool lemonadeChange( int *bills, int billsSize ) {
             troco5--;
             troco10++;
         } else if ( bills[i] == 20 && troco5 >= 1 && troco10 >= 1 ) {
-            troco5 -= 1;
-            troco10 -= 1;
+            troco5--;
+            troco10--;
         } else if ( bills[i] == 20 && troco5 >= 3 && troco10 == 0 ) {
             troco5 -= 3;
         } else {
