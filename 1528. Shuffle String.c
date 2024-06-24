@@ -1,26 +1,26 @@
-/*Exercício 1528 do LeetCode sobre embaralhamento de Strings
-C O D E L E E T = s
-0 1 2 3 4 5 6 7 = j
+#include <stdio.h>
 
-4 5 6 7 0 2 1 3 = indices
+char *restoreString( char *s, int *indices, int indicesSize );
 
-L E E T C O D E = b
-0 1 2 3 4 5 6 7 = j
-*/
+int main()
+{
+    char s[] = "codeleet";
+    int indices[] = { 4, 5, 6, 7, 0, 2, 1, 3 };
+    int indicesSize = sizeof(indices) / sizeof(indices[0]);
+    restoreString(s, indices, indicesSize);
+    printf("%s\n", s);
+}
 
-char *restoreString(char *s, int *indices, int indicesSize)
+char *restoreString( char *s, int *indices, int indicesSize )
 {
     char b[indicesSize];
-    int j;
-    for (j = 0; j < indicesSize; j++)
-    {
-        b[indices[j]] = s[j];
+    int i;
+    for ( i = 0; i < indicesSize; i++ ) {
+        b[indices[i]] = s[i];
     }
-
-    for (j = 0; j < indicesSize; j++)
-    {
-        s[j] = b[j];
+    
+    for ( i = 0; i < indicesSize; i++ ) {
+        s[i] = b[i];
     }
-
     return s;
 }
