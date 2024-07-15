@@ -1,0 +1,32 @@
+// typedef struct pilha{
+//     char *s;
+//     struct Pilha *topo;
+//     struct Pilha *proximo;
+// }Pilha;
+
+// int maximumGain(char* s, int x, int y) {
+//     Pilha *novo = malloc(sizeof(Pilha));
+
+//     int tam = strlen(s);
+//     for(int i = 0; i < tam;i++){
+//         novo -> proximo = s[i];
+//         novo -> proximo = topo;
+//         novo -> topo;
+
+//     }
+
+//      if(novo) {
+//          novo -> ganho = topo;
+
+//      }
+// }
+
+// int main(){
+//     Pilha *topo = NULL;
+
+//     Pilha *novo = malloc(sizeof(Pilha));
+   
+//     maximumGain("cdbcbbaaabab",4,5);
+//     printf("");
+//     return 0;
+// }
