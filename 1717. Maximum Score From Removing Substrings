@@ -1,0 +1,38 @@
+int maximumGain(char *s, int x, int y) {
+    int pontos1, pontos2;
+
+    if (x > y) {
+        pontos1 = remover(s, "ab", x);
+        pontos2 = remover(s, "ba", y);
+    } else {
+        pontos1 = remover(s, "ba", y);
+        pontos2 = remover(s, "ab", x);
+    }
+
+    return pontos1 + pontos2;
+}
+
+int remover(char *s, const char *sF, int pontos) {
+    char pilha[strlen(s) + 1];
+    int topo = -1;
+    int total = 0;
+
+    for (int i = 0; s[i] != '\0'; i++) {
+        pilha[++topo] = s[i];
+        if (topo >= strlen(sF) - 1) {
+            int achou = 1;
+            for (int j = 0; j < strlen(sF); j++) {
+                if (pilha[topo - j] != sF[strlen(sF) - 1 - j]) {
+                    achou = 0;
+                    break;
+                }   
+            } if (achou) {
+                topo -= strlen(sF);
+                total += pontos;
+            }
+        }
+    }
+    pilha[topo + 1] = '\0';
+    strcpy(s, pilha);
+    return total;
+}
