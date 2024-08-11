@@ -1,0 +1,117 @@
+Feito na Faculdade:
+int altura(struct TreeNode* root);
+struct TreeNode* percorrerLeft(struct TreeNode* root,int* vetor);
+struct TreeNode* percorrerRight(struct Tree Node* root,int* vetor2);
+
+struct TreeNode* subtreeWithAllDeepest(struct TreeNode* root) {
+    int* vetor = malloc(sizeof(struct TreeNode));
+    int* vetor2= malloc(sizeof(struct TreeNode));
+    percorrerLeft(root,vetor);
+    percorrerRight(root,vetor2);
+    return percorrerLeft(root,vetor);   
+}
+
+int altura(struct TreeNode* root){
+    if(root != NULL){
+        int alturaEsq = altura(root->left);
+        int alturaDir = altura(root->right);
+
+        if(alturaEsq > alturaDir){
+            alturaEsq + 1;
+        } else {
+            alturaDir + 1;
+        }
+    }
+    return 0;
+}
+
+struct TreeNode* percorrerLeft(struct TreeNode* root,int altura) {
+    if(root->left == NULL || root->right == NULL){
+        return vetor;
+    }
+
+    percorrerLeft(root->right,vetor);
+
+    vetor[(*sizeL)++] = root->val;
+    
+    return (struct TreeNode*)vetor;
+}
+
+struct TreeNode* percorrerRight(struct TreeNode* root,int* vetor2,int altura) {
+    percorrerRight(root->right,vetor2);
+    int* sizeR=0;
+        vetor2[(*sizeR)++] = root->val;
+    return (struct TreeNode*)vetor2;
+}
+
+
+
+
+Feito em Casa:
+
+int altura( struct TreeNode* root );
+struct TreeNode* percorrerLeft( struct TreeNode* root, int altura );
+struct TreeNode* percorrerRight( struct TreeNode* root, int altura );
+
+struct TreeNode* subtreeWithAllDeepest( struct TreeNode* root ) {
+    int alturaEsquerda = altura( root->left );
+    int alturaDireita = altura( root->right );
+
+    if ( alturaEsquerda == alturaDireita ) {
+        return root;
+    } else if ( alturaEsquerda > alturaDireita ) {
+        return subtreeWithAllDeepest( root->left );
+    } else {
+        return subtreeWithAllDeepest( root->right );
+    }
+}
+
+int altura( struct TreeNode* root ) {
+    if ( root == NULL ) {
+        return 0;
+    }
+    int alturaEsq = altura( root->left );
+    int alturaDir = altura( root->right );
+    
+    if( alturaEsq > alturaDir ) {
+        return alturaEsq + 1;
+    }   else {
+        return alturaDir + 1;
+    }
+}
+
+struct TreeNode* percorrerLeft( struct TreeNode* root, int altura ) {
+    if ( root == NULL || altura == 1 ) {
+        return root;
+    }
+    struct TreeNode* left = percorrerLeft( root->left, altura - 1 );
+    struct TreeNode* right = percorrerLeft( root->right, altura - 1 );
+
+    if ( left != NULL && right != NULL ) {
+        return root;
+    }
+    if( left == NULL ){
+        return right;
+    } else {
+        return left;
+    }
+}
+
+struct TreeNode* percorrerRight( struct TreeNode* root, int altura ) {
+    if ( root == NULL || altura == 1 ) {
+        return root;
+    }
+
+    struct TreeNode* left = percorrerRight( root->left, altura - 1 );
+    struct TreeNode* right = percorrerRight( root->right, altura - 1 );
+
+    if ( left != NULL && right != NULL ) {
+        return root;
+    }
+
+    if( left == NULL ) {
+        return right;
+    } else {
+        return left;
+    }
+}
