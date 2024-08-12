@@ -79,39 +79,3 @@ int altura( struct TreeNode* root ) {
         return alturaDir + 1;
     }
 }
-
-struct TreeNode* percorrerLeft( struct TreeNode* root, int altura ) {
-    if ( root == NULL || altura == 1 ) {
-        return root;
-    }
-    struct TreeNode* left = percorrerLeft( root->left, altura - 1 );
-    struct TreeNode* right = percorrerLeft( root->right, altura - 1 );
-
-    if ( left != NULL && right != NULL ) {
-        return root;
-    }
-    if( left == NULL ){
-        return right;
-    } else {
-        return left;
-    }
-}
-
-struct TreeNode* percorrerRight( struct TreeNode* root, int altura ) {
-    if ( root == NULL || altura == 1 ) {
-        return root;
-    }
-
-    struct TreeNode* left = percorrerRight( root->left, altura - 1 );
-    struct TreeNode* right = percorrerRight( root->right, altura - 1 );
-
-    if ( left != NULL && right != NULL ) {
-        return root;
-    }
-
-    if( left == NULL ) {
-        return right;
-    } else {
-        return left;
-    }
-}
