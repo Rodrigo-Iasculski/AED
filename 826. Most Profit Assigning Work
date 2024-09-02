@@ -1,0 +1,84 @@
+#include <stdio.h>
+
+void ordernarGanho( int* profit, int profitSize, int* difficulty, int difficultySize );
+void ordernarTrabalhador( int* worker, int workerSize );
+
+int maxProfitAssignment(int* difficulty, int difficultySize, int* profit,int profitSize, int* worker, int workerSize ) {
+
+    ordernarGanho( profit, profitSize,difficulty, difficultySize );
+    ordernarTrabalhador( worker,workerSize );
+
+    int ganho = 0;
+    int ganhoMax = 0;
+    int j = 0;
+
+    for ( int i = 0; i < workerSize; i++ ) {
+        while ( j < difficultySize && worker[i] >= difficulty[j] ) {
+            if ( ganhoMax < profit[j] ) {
+                ganhoMax = profit[j];
+            }
+            j++;
+        }
+        ganho += ganhoMax;
+    }
+
+    return ganho;
+}
+
+//Ordena o trabalhor em ordem crescente
+void ordernarTrabalhador( int *worker, int workerSize )
+{
+    int tempWork;
+    for ( int i = 0; i < workerSize; i++ ) {
+        for (int j = 0; j < workerSize - i - 1; j++) {
+            if (worker[j] > worker[j + 1]) {
+                tempWork = worker[j];
+                worker[j] = worker[j + 1];
+                worker[j + 1] = tempWork;
+            }
+        }
+    }
+}
+
+//Ordena profit com os mesmo indices do difficulty em ordem crescente
+void ordernarGanho( int *profit, int profitSize, int *difficulty, int difficultySize ) {
+    int tempPro;
+    int tempDif;
+    for ( int i = 0; i < difficultySize; i++ ) {
+        for (int j = 0; j < difficultySize - 1; j++) {
+            if ( difficulty[j] > difficulty[j + 1] ) {
+                tempPro = profit[j];
+                profit[j] = profit[j + 1];
+                profit[j + 1] = tempPro;
+
+                tempDif = difficulty[j];
+                difficulty[j] = difficulty[j + 1];
+                difficulty[j + 1] = tempDif;
+            }
+        }
+    }
+}
+
+int main() {
+    int difficult[5] = {2,4,6,8,10};
+    int difficultSize = 5;
+
+    int profit[5] = {10,20,30,40,50};
+    int profitSize = 5;
+
+    int worker[4] = {4,5,6,7};
+    int workerSize = 4;
+
+    printf("Ganho = %d\n",maxProfitAssignment( difficult, difficultSize, profit, profitSize, worker, workerSize ));
+
+    int difficult1[5] = {68,35,52,47,86};
+    int difficultSize1 = 5;
+
+    int profit1[5] = {67,17,1,81,3};
+    int profitSize1 = 5;
+
+    int worker1[5] = {92,10,85,84,82};
+    int workerSize1 = 5;
+    
+    printf("Ganho = %d\n",maxProfitAssignment( difficult1, difficultSize1, profit1, profitSize1, worker1, workerSize1 ));
+}
